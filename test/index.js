@@ -1,3 +1,4 @@
+// hoge
 function f1(){
     var e = new Task() ;
     setTimeout(function(){
