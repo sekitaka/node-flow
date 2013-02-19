@@ -6,7 +6,7 @@ function f1(){
     var e = new Task() ;
     setTimeout(function(){
         console.log('f1 END');
-        e.done() ;
+        e.done('Error has ocured') ;
     },1000)
     return e;
 }
@@ -32,6 +32,26 @@ function f3(){
     console.log('f3 END');
 }
 
+function farg1 (){
+    console.log('farg1 START');
+    var e = new Task() ;
+    setTimeout(function(){
+        console.log('farg1 END');
+        e.done(null,'farg1 end message') ;
+    },3000)
+    return e;
+}
+
+function farg2 (msg){
+    console.log('farg2 START');
+    console.log('receive message: ' + msg);
+    var e = new Task() ;
+    setTimeout(function(){
+        console.log('farg2 END');
+        e.done(null,'farg2 end message') ;
+    },3000)
+    return e;
+}
 
 // parallel
 //NF.parallel([f3,f3],function(err,num){
@@ -43,9 +63,9 @@ function f3(){
 //})
 
 // serial
-NF.serial([f2,f3,f1,f2,f3,f1],function(err){
+NF.serial([farg1,farg2],function(err){
     if(err){
-        console.log('ERROR') ;
+        console.log('END WITH ERROR') ;
     } else {
         console.log('ALL TASK DONE.') ;
     }
